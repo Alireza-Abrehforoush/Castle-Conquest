@@ -1,18 +1,20 @@
-#ifndef FNODE_BHUHGYFBD
-#define FNODE_BHUHGYFBD
+#ifndef BSTNODE_BHUHGYFBD
+#define BSTNODE_BHUHGYFBD
 
 template <class T>
-class FNode
+class BSTNode
 {
 protected:
 private:
 	T data;
-	FNode* parent;
-	FNode* left;
-	FNode* right;
+	BSTNode<T>* parent;
+	BSTNode<T>* left;
+	BSTNode<T>* right;
 	int height;
+
 public:
-	FNode(const T& data, const FNode* parent = nullptr, const FNode* left = nullptr, const FNode* right = nullptr, const int& height = 0)
+
+	BSTNode(const T& data, BSTNode<T>* parent = nullptr, BSTNode<T>* left = nullptr, BSTNode<T>* right = nullptr, const int& height = 0)
 		:data(data)
 		, parent(parent)
 		, left(left)
@@ -26,17 +28,17 @@ public:
 		this->data = data;
 		return;
 	}
-	void setParent(const FNode* parent)
+	void setParent(const BSTNode<T>* parent)
 	{
 		this->parent = parent;
 		return;
 	}
-	void setLeft(const FNode* left)
+	void setLeft(const BSTNode<T>* left)
 	{
 		this->left = left;
 		return;
 	}
-	void setRight(const FNode* right)
+	void setRight(const BSTNode<T>* right)
 	{
 		this->right = right;
 		return;
@@ -52,15 +54,15 @@ public:
 	{
 		return this->data;
 	}
-	FNode* getParent() const
+	BSTNode<T>* getParent() const
 	{
 		return this->parent;
 	}
-	FNode* getLeft() const
+	BSTNode<T>* getLeft() const
 	{
 		return this->left;
 	}
-	FNode* getRight() const
+	BSTNode<T>* getRight() const
 	{
 		return this->right;
 	}
