@@ -13,7 +13,6 @@ private:
 	int height;
 
 public:
-
 	BSTNode(const T& data, BSTNode<T>* parent = nullptr, BSTNode<T>* left = nullptr, BSTNode<T>* right = nullptr, const int& height = 0)
 		:data(data)
 		, parent(parent)
@@ -28,17 +27,17 @@ public:
 		this->data = data;
 		return;
 	}
-	void setParent(const BSTNode<T>* parent)
+	void setParent(BSTNode<T>* parent)
 	{
 		this->parent = parent;
 		return;
 	}
-	void setLeft(const BSTNode<T>* left)
+	void setLeft(BSTNode<T>* left)
 	{
 		this->left = left;
 		return;
 	}
-	void setRight(const BSTNode<T>* right)
+	void setRight(BSTNode<T>* right)
 	{
 		this->right = right;
 		return;
