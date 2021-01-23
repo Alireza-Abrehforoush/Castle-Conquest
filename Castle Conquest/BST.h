@@ -14,7 +14,79 @@ public:
 		:root(root)
 	{
 	}
+	void setRoot(BSTNode<T>* root)
+	{
+		this->root = root;
+		return;
+	}
+	BSTNode<T>* getRoot() const
+	{
+		return this->root;
+	}
 
+	
+	BSTNode<T>* search(BSTNode<T>* root, const T& key) const
+	{
+		BSTNode<T>* temp = root;
+		if (root == nullptr || temp->getData() == key)
+		{
+			return temp;
+		}
+		if (key <= temp->getData())
+		{
+			return this->search(temp->getLeft(), key);
+		}
+		else
+		{
+			return this->search(temp->getRight(), key);
+		}
+	}
+	BSTNode<T>* iterativeSearch(BSTNode<T>* root, const T& key)
+	{
+		while (root != nullptr && root->getData() != key)
+		{
+			if (key <= root->getData())
+			{
+				root = root->getLeft();
+			}
+			else
+			{
+				root = root->getRight();
+			}
+			return root;
+		}
+	}
+	T getMinimum(BSTNode<T>* root) const
+	{
+		BSTNode<T>* temp = root;
+		while (temp->getLeft() != nullptr)
+		{
+			temp = temp->getLeft();
+		}
+		return temp->getData();
+	}
+	T getMaximum(BSTNode<T>* root) const
+	{
+		BSTNode<T>* temp = root;
+		while (temp->getRight() != nullptr)
+		{
+			temp = temp->getRight();
+		}
+		return temp->getData();
+	}
+	T getSuccessorOf(BSTNode<T>* x) const
+	{
+		if (x->getRight() != nullptr)
+		{
+			return this->getSuccessorOf(x->getRight());
+		}
+		BSTNode<T>* y = x->getParent();
+		while (y!=nullptr && x == y->getRight())
+		{
+			x = y;
+			y = y->getParent();
+		}
+	}
 	void insert(const T& data)
 	{
 		if (this->root != nullptr)
@@ -40,25 +112,6 @@ public:
 		else
 		{
 			this->root = new BSTNode<T>(data);
-		}
-	}
-	BSTNode<T>* search(const T& key) const//contains errors
-	{
-		BSTNode<T>* temp = this->root;
-		while (temp)
-		{
-			if (temp->getData() == key)
-			{
-				return temp;
-			}
-			else if (temp->getData() > key)
-			{
-				temp = temp->getLeft();
-			}
-			else
-			{
-				temp = temp->getRight();
-			}
 		}
 	}
 
