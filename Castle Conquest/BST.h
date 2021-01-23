@@ -42,7 +42,25 @@ public:
 			this->root = new BSTNode<T>(data);
 		}
 	}
-	
+	BSTNode<T>* search(const T& key) const//contains errors
+	{
+		BSTNode<T>* temp = this->root;
+		while (temp)
+		{
+			if (temp->getData() == key)
+			{
+				return temp;
+			}
+			else if (temp->getData() > key)
+			{
+				temp = temp->getLeft();
+			}
+			else
+			{
+				temp = temp->getRight();
+			}
+		}
+	}
 
 	~BST()
 	{
