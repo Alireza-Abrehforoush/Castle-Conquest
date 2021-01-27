@@ -41,53 +41,81 @@ public:
 			return this->search(temp->getRight(), key);
 		}
 	}
-	BSTNode<T>* iterativeSearch(BSTNode<T>* root, const T& key)
+	BSTNode<T>* iterativeSearch(const T& key)
 	{
-		while (root != nullptr && root->getData() != key)
+		BSTNode<T>* temp = this->root;
+		while (temp != nullptr && temp->getData() != key)
 		{
-			if (key <= root->getData())
+			if (key <= temp->getData())
 			{
-				root = root->getLeft();
+				temp = temp->getLeft();
 			}
 			else
 			{
-				root = root->getRight();
+				temp = temp->getRight();
 			}
-			return root;
+			return temp;
 		}
 	}
 	T getMinimum(BSTNode<T>* root) const
 	{
-		BSTNode<T>* temp = root;
-		while (temp->getLeft() != nullptr)
+		if (root != nullptr)
 		{
-			temp = temp->getLeft();
+			BSTNode<T>* temp = root;
+			while (temp->getLeft() != nullptr)
+			{
+				temp = temp->getLeft();
+			}
+			return temp->getData();
 		}
-		return temp->getData();
 	}
 	T getMaximum(BSTNode<T>* root) const
 	{
-		BSTNode<T>* temp = root;
-		while (temp->getRight() != nullptr)
+		if (root != nullptr)
 		{
-			temp = temp->getRight();
+			BSTNode<T>* temp = root;
+			while (temp->getRight() != nullptr)
+			{
+				temp = temp->getRight();
+			}
+			return temp->getData();
 		}
-		return temp->getData();
 	}
 	T getSuccessorOf(BSTNode<T>* x) const
 	{
-		if (x->getRight() != nullptr)
+		if (x != nullptr)
 		{
-			return this->getSuccessorOf(x->getRight());
-		}
-		BSTNode<T>* y = x->getParent();
-		while (y!=nullptr && x == y->getRight())
-		{
-			x = y;
-			y = y->getParent();
+			if (x->getRight() != nullptr)
+			{
+				return this->getMinimum(x->getRight());
+			}
+			BSTNode<T>* y = x->getParent();
+			while (y != nullptr && x == y->getRight())
+			{
+				x = y;
+				y = y->getParent();
+			}
+			return y->getData();
 		}
 	}
-	void insert(const T& data)
+	T getPredecessorOf(BSTNode<T>* x) const
+	{
+		if (x != nullptr)
+		{
+			if (x->getLeft() != nullptr)
+			{
+				return this->getMaximum(x->getLeft());
+			}
+			BSTNode<T>* y = x->getParent();
+			while (y != nullptr && x == y->getLeft())
+			{
+				x = y;
+				y = y->getParent();
+			}
+			return y->getData();
+		}
+	}
+	BSTNode<T>* insert(const T& data)
 	{
 		if (this->root != nullptr)
 		{
@@ -108,15 +136,158 @@ public:
 			BSTNode<T>* new_node = new BSTNode<T>(data, temp_parent);
 			if (data <= temp_parent->getData()) temp_parent->setLeft(new_node);
 			else temp_parent->setRight(new_node);
+			return new_node;
 		}
 		else
 		{
 			this->root = new BSTNode<T>(data);
+			return root;
 		}
 	}
-
+	void deleteNode(BSTNode<T>* x)
+	{
+		if (x != nullptr)
+		{
+			if (x->getLeft() == nullptr && x->getRight() == nullptr)
+			{
+				if (x->getParent() == nullptr)
+				{
+					this->root = nullptr;
+				}
+				else if (x == x->getParent()->getLeft())
+				{
+					x->getParent()->setLeft(nullptr);
+				}
+				else
+				{
+					x->getParent()->setRight(nullptr);
+				}
+				delete x;
+				x = nullptr;
+			}
+			else if (x->getLeft() == nullptr)
+			{
+				if (x->getParent() == nullptr)
+				{
+					this->root = this->root->getRight();
+					this->root->setParent(nullptr);
+				}
+				else if (x == x->getParent()->getLeft())
+				{
+					x->getParent()->setLeft(x->getRight());
+					x->getRight()->setParent(x->getParent());
+				}
+				else
+				{
+					x->getParent()->setRight(x->getRight());
+					x->getRight()->setParent(x->getParent());
+				}
+				delete x;
+				x = nullptr;
+			}
+			else if (x->getRight() == nullptr)
+			{
+				if (x->getParent() == nullptr)
+				{
+					this->root = this->root->getLeft();
+					this->root->setParent(nullptr);
+				}
+				else if (x == x->getParent()->getLeft())
+				{
+					x->getParent()->setLeft(x->getLeft());
+					x->getLeft()->setParent(x->getParent());
+				}
+				else
+				{
+					x->getParent()->setRight(x->getLeft());
+					x->getLeft()->setParent(x->getParent());
+				}
+				delete x;
+				x = nullptr;
+			}
+			else
+			{
+				BSTNode<T>* suc = iterativeSearch(this->getSuccessorOf(x));
+				if (x->getParent() == nullptr)
+				{
+					if (suc == suc->getParent()->getLeft())
+					{
+						suc->getParent()->setLeft(nullptr);
+					}
+					else
+					{
+						suc->getParent()->setRight(nullptr);
+					}
+					suc->setParent(nullptr);
+					suc->setLeft(x->getLeft());
+					suc->setRight(x->getRight());
+					this->root = suc;
+				}
+				else if (x == x->getParent()->getLeft())
+				{
+					if (suc == suc->getParent()->getLeft())
+					{
+						suc->getParent()->setLeft(nullptr);
+					}
+					else
+					{
+						suc->getParent()->setRight(nullptr);
+					}
+					suc->setParent(x->getParent());
+					suc->setLeft(x->getLeft());
+					suc->setRight(x->getRight());
+					x->getParent()->setLeft(suc);
+				}
+				else
+				{
+					if (suc == suc->getParent()->getLeft())
+					{
+						suc->getParent()->setLeft(nullptr);
+					}
+					else
+					{
+						suc->getParent()->setRight(nullptr);
+					}
+					suc->setParent(x->getParent());
+					suc->setLeft(x->getLeft());
+					suc->setRight(x->getRight());
+					x->getParent()->setRight(suc);
+				}
+				delete x;
+				x = nullptr;
+			}
+		}
+	}
+	void deleteSubtree(BSTNode<T>* x)
+	{
+		if (x != nullptr)
+		{
+			if (x->getLeft() == nullptr && x->getRight() == nullptr)
+			{
+				delete x;
+				x = nullptr;
+			}
+			else if (x->getLeft() == nullptr)
+			{
+				this->deleteSubtree(x->getRight());
+				this->deleteSubtree(x);
+			}
+			else if (x->getRight() == nullptr)
+			{
+				this->deleteSubtree(x->getLeft());
+				this->deleteSubtree(x);
+			}
+			else
+			{
+				this->deleteSubtree(x->getLeft());
+				this->deleteSubtree(x->getRight());
+				this->deleteSubtree(x);
+			}
+		}
+	}
 	~BST()
 	{
+		this->deleteSubtree(root);
 	}
 };
 
