@@ -259,29 +259,41 @@ public:
 	}
 	void deleteSubtree(BSTNode<T>* x)//bugs not fixed
 	{
-		if (x != nullptr)
+		//if (x != nullptr)
+		//{
+		//	if (x->getLeft() == nullptr && x->getRight() == nullptr)
+		//	{
+		//		delete x;
+		//		x = nullptr;
+		//	}
+		//	else if (x->getLeft() == nullptr)
+		//	{
+		//		this->deleteSubtree(x->getRight());
+		//		this->deleteSubtree(x);
+		//	}
+		//	else if (x->getRight() == nullptr)
+		//	{
+		//		this->deleteSubtree(x->getLeft());
+		//		this->deleteSubtree(x);
+		//	}
+		//	else
+		//	{
+		//		this->deleteSubtree(x->getLeft());
+		//		this->deleteSubtree(x->getRight());
+		//		this->deleteSubtree(x);
+		//	}
+		//}
+
+		if (x == nullptr)
 		{
-			if (x->getLeft() == nullptr && x->getRight() == nullptr)
-			{
-				delete x;
-				x = nullptr;
-			}
-			else if (x->getLeft() == nullptr)
-			{
-				this->deleteSubtree(x->getRight());
-				this->deleteSubtree(x);
-			}
-			else if (x->getRight() == nullptr)
-			{
-				this->deleteSubtree(x->getLeft());
-				this->deleteSubtree(x);
-			}
-			else
-			{
-				this->deleteSubtree(x->getLeft());
-				this->deleteSubtree(x->getRight());
-				this->deleteSubtree(x);
-			}
+			return;
+		}
+		else
+		{
+			this->deleteSubtree(x->getLeft());
+			this->deleteSubtree(x->getRight());
+			delete x;
+			x = nullptr;
 		}
 	}
 	~BST()

@@ -11,8 +11,10 @@ int main()
 	kemp.insert(111111111);
 	kemp.insert(102565);
 	kemp.insert(-256);
-	
-	cout << kemp.getPredecessorOf(temp);
+	for (int i = 0; i < 1000; i++)
+	{
+		kemp.insert(i);
+	}
 
 	return 0;
 }
