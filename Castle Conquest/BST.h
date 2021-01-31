@@ -23,7 +23,6 @@ public:
 	{
 		return this->root;
 	}
-
 	
 	BSTNode<T>* search(BSTNode<T>* root, const T& key) const
 	{
@@ -258,7 +257,7 @@ public:
 			}
 		}
 	}
-	void deleteSubtree(BSTNode<T>* x)
+	void deleteSubtree(BSTNode<T>* x)//bugs not fixed
 	{
 		if (x != nullptr)
 		{
