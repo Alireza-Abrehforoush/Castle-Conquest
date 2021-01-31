@@ -17,7 +17,12 @@ int main()
 	//	kemp.insert(i);
 	//}
 	AVLTree<int> tr;
-	BSTNode<int> k(0);
-	tr.insert(1);
+	//BSTNode<int> k(0);
+	for (int i = 0; i < 20; i++)
+	{
+		tr.insert(i);
+		tr.print();
+	}
+	
 	return 0;
 }

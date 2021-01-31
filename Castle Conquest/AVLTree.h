@@ -1,5 +1,8 @@
 #ifndef AVLTREE_NCKENKECM
 #define AVLTREE_NCKENKECM
+#include <iostream>
+#include <string>
+using namespace std;
 #include "BST.h"
 #include "MyFuncs.h"
 template <class T>
@@ -7,13 +10,7 @@ class AVLTree :
 	public BST<T>
 {
 protected:
-	int heightOf(BSTNode<T>* t)
-	{
-		if (t == nullptr) return -1;
-		else return t->getHeight();
-	}
-	
-	BSTNode<T>* singleLeftRotate(BSTNode<T>*& x)
+	BSTNode<T>* singleLeftRotate(BSTNode<T>* x)
 	{
 		if (x == nullptr)
 		{
@@ -30,7 +27,7 @@ protected:
 			y->setLeft(x);
 			x->setParent(y);
 			x->setRight(beta);
-			beta->setParent(x);
+			if(beta != nullptr) beta->setParent(x);
 			y->setParent(parent);
 			if (parent == nullptr)
 			{
@@ -54,11 +51,14 @@ protected:
 			y->height = max(height(y->left),
 				height(y->right)) + 1;
 			*/
-			x->setHeight(myfuncs::max(this->heightOf(x->getLeft())), this->heightOf(x->getRight()) + 1);
-			y->setHeight(myfuncs::max(this->heightOf(y->getLeft())), this->heightOf(y->getRight()) + 1);
+			this->fixHeightOf(x);
+			this->fixHeightOf(y);
+			this->fixHeightOf(parent);
+
+			return parent;
 		}
 	}
-	BSTNode<T>* singleRightRotate(BSTNode<T>*& y)
+	BSTNode<T>* singleRightRotate(BSTNode<T>* y)
 	{
 		if (y == nullptr)
 		{
@@ -75,7 +75,7 @@ protected:
 			x->setRight(y);
 			y->setParent(x);
 			y->setLeft(beta);
-			beta->setParent(y);
+			if(beta != nullptr)beta->setParent(y);
 			x->setParent(parent);
 
 			if (parent == nullptr)
@@ -100,16 +100,19 @@ protected:
 			x->height = max(height(x->left),
 					height(x->right)) + 1;
 			*/
-			y->setHeight(myfuncs::max(this->heightOf(y->getLeft()), this->heightOf(y->getRight())) + 1);
-			x->setHeight(myfuncs::max(this->heightOf(x->getLeft()), this->heightOf(x->getRight())) + 1);
+			this->fixHeightOf(y);
+			this->fixHeightOf(x);
+			this->fixHeightOf(parent);
+
+			return parent;
 		}
 	}
-	BSTNode<T>* doubleLeftRotate(BSTNode<T>*& x)
+	BSTNode<T>* doubleLeftRotate(BSTNode<T>* x)
 	{
 		x->setRight(this->singleRightRotate(x->getRight()));
 		return this->singleLeftRotate(x);
 	}
-	BSTNode<T>* doubleRightRotate(BSTNode<T>*& y)
+	BSTNode<T>* doubleRightRotate(BSTNode<T>* y)
 	{
 		y->setLeft(this->singleLeftRotate(y->getLeft()));
 		return this->singleRightRotate(y);
@@ -142,11 +145,145 @@ protected:
 			return parent;
 		}
 	}
-
 	
+	int getBalance(BSTNode<T>* x)
+	{
+		if (x == nullptr)
+		{
+			return 0;
+		}
+		else
+		{
+			return this->heightOf(x->getLeft()) - this->heightOf(x->getRight());
+		}
+	}
+	int bf(BSTNode<T>* x)
+	{
+		if (x == nullptr)
+		{
+			return 0;
+		}
+		else
+		{
+			if (x->getLeft() && x->getRight())
+			{
+				return x->getLeft()->getHeight() - x->getRight()->getHeight();
+			}
+			else if (x->getLeft())
+			{
+				return x->getLeft()->getHeight() + 1;
+			}
+			else if (x->getRight())
+			{
+				return -x->getRight()->getHeight() - 1;
+			}
+			else
+			{
+				return 0;
+			}
+		}
+	}
+	int heightOf(BSTNode<T>* t)
+	{
+		if (t == nullptr) return -1;
+		else return t->getHeight();
+	}
+	int fixHeightOf(BSTNode<T>* x)
+	{
+		if (x == nullptr)
+		{
+			return -1;
+		}
+		else
+		{
+			x->setHeight(myfuncs::max(this->heightOf(x->getLeft()), this->heightOf(x->getRight())) + 1);
+			return x->getHeight();
+		}
+	}
+	void balance(BSTNode<T>* x)
+	{
+		BSTNode<T>* temp = x;
+		while (temp != nullptr)
+		{
+			if (bf(temp) > 1)
+			{
+				if (bf(temp->getLeft()) == -1)
+				{
+					temp = this->leftRightRotate(temp);
+				}
+				else
+				{
+					temp = this->singleRightRotate(temp);
+				}
+			}
+			else if (bf(temp) < -1)
+			{
+				if (bf(temp->getRight()) == 1)
+				{
+					temp = this->rightLeftRotate(temp);
+				}
+				else
+				{
+					temp = this->singleLeftRotate(temp);
+				}
+			}
+			else
+			{
+				temp = temp->getParent();
+			}
+		}
+	}
 
 private:
+	void printBT(const string& prefix, const BSTNode<T>* n, bool isLeft)
+	{
+		if (n != nullptr)
+		{
+			std::cout << prefix;
+
+			char h = (char)-60;
+			char r = (char)-61;
+			char l = (char)-64;
+			char u = (char)-77;
+			if (isLeft)
+				cout << r << h << h;
+			else
+				cout << l << h << h;
+			std::cout << n->getData() << std::endl;
+			string temp;
+			if (isLeft)
+			{
+				temp = u;
+				temp.append("   ");
+			}
+			else
+				temp = "    ";
+			printBT(prefix + temp, n->getLeft(), true);
+			printBT(prefix + temp, n->getRight(), false);
+		}
+	}
 public:
+	
+	void print()
+	{
+		cout << endl;
+		printBT("", this->root, false);
+		cout << endl;
+	}
+	void insert(const T& x)
+	{
+		BSTNode<T>* temp = BST<T>::insert(x);
+		for (BSTNode<T>* kemp = temp; kemp != nullptr; kemp = kemp->getParent())
+		{
+			fixHeightOf(kemp);
+		}
+		this->balance(temp);
+	}
+	T remove(const T& input)
+	{
+		auto n = this->findPtr(input);
+		return deleteNode(n);
+	}
 };
 
 #endif
