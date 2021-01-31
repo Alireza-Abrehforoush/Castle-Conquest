@@ -141,14 +141,18 @@
     <ClCompile Include="AVLTree.cpp" />
     <ClCompile Include="BST.cpp" />
     <ClCompile Include="BSTNode.cpp" />
+    <ClCompile Include="Edge.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MyFuncs.cpp" />
+    <ClCompile Include="Vertex.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AVLTree.h" />
     <ClInclude Include="BST.h" />
     <ClInclude Include="BSTNode.h" />
+    <ClInclude Include="Edge.h" />
     <ClInclude Include="MyFuncs.h" />
+    <ClInclude Include="Vertex.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
