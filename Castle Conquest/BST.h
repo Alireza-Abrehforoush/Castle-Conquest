@@ -53,8 +53,8 @@ public:
 			{
 				temp = temp->getRight();
 			}
-			return temp;
 		}
+		return temp;
 	}
 	T getMinimum(BSTNode<T>* root) const
 	{
@@ -86,6 +86,7 @@ public:
 		{
 			if (x->getRight() != nullptr)
 			{
+				T temp = this->getMinimum(x->getRight());
 				return this->getMinimum(x->getRight());
 			}
 			BSTNode<T>* y = x->getParent();
@@ -257,33 +258,8 @@ public:
 			}
 		}
 	}
-	void deleteSubtree(BSTNode<T>* x)//bugs not fixed
+	void deleteSubtree(BSTNode<T>* x)
 	{
-		//if (x != nullptr)
-		//{
-		//	if (x->getLeft() == nullptr && x->getRight() == nullptr)
-		//	{
-		//		delete x;
-		//		x = nullptr;
-		//	}
-		//	else if (x->getLeft() == nullptr)
-		//	{
-		//		this->deleteSubtree(x->getRight());
-		//		this->deleteSubtree(x);
-		//	}
-		//	else if (x->getRight() == nullptr)
-		//	{
-		//		this->deleteSubtree(x->getLeft());
-		//		this->deleteSubtree(x);
-		//	}
-		//	else
-		//	{
-		//		this->deleteSubtree(x->getLeft());
-		//		this->deleteSubtree(x->getRight());
-		//		this->deleteSubtree(x);
-		//	}
-		//}
-
 		if (x == nullptr)
 		{
 			return;
@@ -292,6 +268,7 @@ public:
 		{
 			this->deleteSubtree(x->getLeft());
 			this->deleteSubtree(x->getRight());
+			if (x == this->root) root = nullptr;
 			delete x;
 			x = nullptr;
 		}

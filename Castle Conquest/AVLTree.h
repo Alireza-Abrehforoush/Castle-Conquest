@@ -279,10 +279,15 @@ public:
 		}
 		this->balance(temp);
 	}
-	T remove(const T& input)
+	void remove(const T& x)
 	{
-		auto n = this->findPtr(input);
-		return deleteNode(n);
+		BSTNode<T>* temp = this->iterativeSearch(x);
+		this->deleteNode(temp);
+		return;
+	}
+	~AVLTree()
+	{
+		BST<T>::~BST();
 	}
 };
 

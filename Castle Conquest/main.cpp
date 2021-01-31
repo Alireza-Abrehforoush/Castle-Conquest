@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cstdlib>
 using namespace std;
 
 #include "BST.h"
@@ -18,11 +19,22 @@ int main()
 	//}
 	AVLTree<int> tr;
 	//BSTNode<int> k(0);
-	for (int i = 0; i < 20; i++)
+	for (int i = 0; i < 10; i++)
 	{
 		tr.insert(i);
-		tr.print();
 	}
-	
+	tr.print();
+	tr.remove(7);
+	tr.print();
+	tr.remove(3);
+	tr.print();
+	tr.remove(6);
+	tr.print();
+	tr.~AVLTree();
+	for (int i = 0; i < 10; i++)
+	{
+		tr.insert(i%3);
+	}
+	tr.print();
 	return 0;
 }
