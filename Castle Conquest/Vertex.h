@@ -6,11 +6,9 @@ class Vertex
 protected:
 private:
 	T data;
-	int degree;
 public:
 	Vertex(T data, int degree = 0)
 		:data(data)
-		,degree(degree)
 	{
 	}
 	T& getData() const

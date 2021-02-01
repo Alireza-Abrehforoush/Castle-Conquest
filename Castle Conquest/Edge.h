@@ -10,6 +10,12 @@ private:
 	Vertex<T>* head;
 	Vertex<T>* tail;
 public:
+	Edge()
+		:weight(0)
+		,head(nullptr)
+		,tail(nullptr)
+	{
+	}
 	Edge(const T& data, Vertex<T>* head = nullptr, Vertex<T>* tail = nullptr, double weight = 0)
 		:data(data)
 		,head(head)

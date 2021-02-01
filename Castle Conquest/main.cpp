@@ -2,6 +2,7 @@
 #include <cstdlib>
 using namespace std;
 
+#include "MyVector.h"
 #include "BST.h"
 #include "AVLTree.h"
 #include "Edge.h"
@@ -36,5 +37,7 @@ int main()
 	//	tr.insert(i%3);
 	//}
 	//tr.print();
+	MyVector<int> jkd;
+	jkd.push(0);
 	return 0;
 }
