@@ -54,6 +54,8 @@ private:
 				break;
 			}
 		}
+		delete[] degrees_list;
+		degrees_list = nullptr;
 	}
 public:
 	FibonacciHeap()
@@ -76,9 +78,47 @@ public:
 		}
 		this->size_of_heap++;
 	}
-	void extractMinimum()
+	T extractMinimum()
 	{
-
+		FibonacciHeapNode<T>* kemp = minimum_element;
+		T data = kemp->getData();
+		this->king_root->unlinkChild(this->minimum_element);
+		while (minimum_element->getChild())
+		{
+			FibonacciHeapNode<T>* temp = minimum_element->getChild();
+			this->minimum_element->unlinkChild(temp);
+			king_root->setChild(temp);
+		}
+		this->setMinimum();
+		this->consolidate();
+		delete kemp;
+		kemp = nullptr;
+		this->size_of_heap--;
+		return data;
+	}
+	void setMinimum()
+	{
+		if (!king_root->hasChild())
+		{
+			return;
+		}
+		else
+		{
+			T min = king_root->getChild()->getData();
+			for (FibonacciHeapNode<T>* it = king_root->getChild(); ; it = it->getRight())
+			{
+				if (min > it->getData())
+				{
+					minimum_element = it;
+					min = it->getData();
+				}
+				if (it == king_root->getChild()->getLeft())
+				{
+					break;
+				}
+			}
+		}
+		
 	}
 };
 
