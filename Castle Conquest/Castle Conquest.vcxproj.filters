@@ -36,7 +36,11 @@
     <ClCompile Include="FibonacciHeap.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+<<<<<<< HEAD
     <ClCompile Include="Castle.cpp">
+=======
+    <ClCompile Include="Soldier.cpp">
+>>>>>>> soldier
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -59,7 +63,11 @@
     <ClInclude Include="FibonacciHeap.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+<<<<<<< HEAD
     <ClInclude Include="Castle.h">
+=======
+    <ClInclude Include="Soldier.h">
+>>>>>>> soldier
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
