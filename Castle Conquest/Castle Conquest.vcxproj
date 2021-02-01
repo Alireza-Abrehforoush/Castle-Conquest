@@ -141,6 +141,8 @@
     <ClCompile Include="AVLTree.cpp" />
     <ClCompile Include="BST.cpp" />
     <ClCompile Include="BSTNode.cpp" />
+    <ClCompile Include="FibonacciHeap.cpp" />
+    <ClCompile Include="FibonacciHeapNode.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MyFuncs.cpp" />
   </ItemGroup>
@@ -148,6 +150,8 @@
     <ClInclude Include="AVLTree.h" />
     <ClInclude Include="BST.h" />
     <ClInclude Include="BSTNode.h" />
+    <ClInclude Include="FibonacciHeap.h" />
+    <ClInclude Include="FibonacciHeapNode.h" />
     <ClInclude Include="MyFuncs.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
