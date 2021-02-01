@@ -17,6 +17,81 @@ public:
 		,size(0)
 	{
 	}
+	void push(const inputType& a)
+	{
+		if (this->size == this->capacity)
+		{
+			inputType* temp = new inputType[2 * this->capacity];
+			for (int i = 0; i < this->capacity; i++)
+			{
+				temp[i] = this->arr[i];
+			}
+			delete[] this->arr;
+			this->capacity *= 2;
+			this->arr = temp;
+		}
+		this->arr[this->size] = a;
+		this->size++;
+	}
+	void insert(const inputType& a, int i)
+	{
+		if (i == this->capacity)
+		{
+			this->push(a);
+		}
+		else
+		{
+			this->arr[i] = a;
+		}
+	}
+	void pop()
+	{
+		this->size--;
+		if (this->size < this->capacity / 2)
+		{
+			inputType* temp = new inputType[this->capacity / 2];
+			for (int i = 0; i < this->size; i++)
+			{
+				temp[i] = this->arr[i];
+			}
+			delete[] this->arr;
+			this->arr = temp;
+		}
+	}
+	void print()
+	{
+		for (int i = 0; i < this->size; i++)
+		{
+			std::cout << this->arr[i] << " ";
+		}
+		cout << endl;
+	}
+	unsigned long long int getSize() const
+	{
+		return this->size;
+	}
+	unsigned long long int getCapacity() const
+	{
+		return this->capacity;
+	}
+	inputType& operator[](unsigned long long int i)
+	{
+		if (i < this->getSize())
+		{
+			return this->arr[i];
+		}
+		else
+		{
+			throw "The index is invalid!";
+		}
+	}
+	~MyVector()
+	{
+		this->size = 0;
+		this->capacity = 1;
+		delete[] this->arr;
+		this->arr = nullptr;
+	}
 
 	MyVector(unsigned long long int size, const inputType& a)
 	{
@@ -44,17 +119,6 @@ public:
 		this->size = obj.getSize();
 		this->capacity = obj.getCapacity();
 		obj.arr = nullptr;
-	}
-	inputType& operator[](unsigned long long int i)
-	{
-		if (i < this->getSize())
-		{
-			return this->arr[i];
-		}
-		else
-		{
-			throw "The index is invalid!";
-		}
 	}
 	void printVector()
 	{
@@ -91,36 +155,6 @@ public:
 		this->size++;
 		return;
 	}
-
-	void push(const inputType& a)
-	{
-		if (this->size == this->capacity)
-		{
-			inputType* temp = new inputType[2 * this->capacity];
-			for (int i = 0; i < this->capacity; i++)
-			{
-				temp[i] = this->arr[i];
-			}
-			delete[] this->arr;
-			this->capacity *= 2;
-			this->arr = temp;
-		}
-		this->arr[this->size] = a;
-		this->size++;
-	}
-
-	void insert(const inputType& a, int i)
-	{
-		if (i == this->capacity)
-		{
-			this->push(a);
-		}
-		else
-		{
-			this->arr[i] = a;
-		}
-	}
-
 	inputType popFront()
 	{
 		if (this->size > 0)
@@ -153,42 +187,9 @@ public:
 			return a;
 		}
 	}
-
-	void pop()
-	{
-		this->size--;
-		if (this->size < this->capacity / 2)
-		{
-			inputType* temp = new inputType[this->capacity / 2];
-			for (int i = 0; i < this->size; i++)
-			{
-				temp[i] = this->arr[i];
-			}
-			delete[] this->arr;
-			this->arr = temp;
-		}
-	}
-
-	void print()
-	{
-		for (int i = 0; i < this->size; i++)
-		{
-			std::cout << this->arr[i] << " ";
-		}
-		cout << endl;
-	}
-
 	inputType* getArray() const
 	{
 		return this->arr;
-	}
-	unsigned long long int getSize() const
-	{
-		return this->size;
-	}
-	unsigned long long int getCapacity() const
-	{
-		return this->capacity;
 	}
 	void insertIn(const inputType& a, unsigned long long int index)
 	{
@@ -239,13 +240,6 @@ public:
 			}
 		}
 		return index;
-	}
-	~MyVector()
-	{
-		this->size = 0;
-		this->capacity = 1;
-		delete[] this->arr;
-		this->arr = nullptr;
 	}
 };
 

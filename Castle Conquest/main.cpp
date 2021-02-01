@@ -7,6 +7,7 @@ using namespace std;
 #include "AVLTree.h"
 #include "Edge.h"
 #include "Vertex.h"
+#include "Graph.h"
 int main()
 {
 	BST<int> kemp;
@@ -39,5 +40,6 @@ int main()
 	//tr.print();
 	MyVector<int> jkd;
 	jkd.push(0);
+	Graph<int> mygr;
 	return 0;
 }

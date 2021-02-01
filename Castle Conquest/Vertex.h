@@ -7,7 +7,7 @@ protected:
 private:
 	T data;
 public:
-	Vertex(T data, int degree = 0)
+	Vertex(T data)
 		:data(data)
 	{
 	}

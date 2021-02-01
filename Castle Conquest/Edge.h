@@ -16,6 +16,13 @@ public:
 		,tail(nullptr)
 	{
 	}
+	Edge(const Edge<T>& obj)
+	{
+		this->data = obj.data;
+		this->weight = obj.weight;
+		this->head = obj.head;
+		this->tail = obj.tail;
+	}
 	Edge(const T& data, Vertex<T>* head = nullptr, Vertex<T>* tail = nullptr, double weight = 0)
 		:data(data)
 		,head(head)
