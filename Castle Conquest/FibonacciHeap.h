@@ -151,6 +151,31 @@ public:
 			}
 		}
 	}
+	void deleteSubtree(FibonacciHeapNode<T>* x)
+	{
+		//x->setColor('b');
+		if (x->getChild() != nullptr)
+		{
+			deleteSubtree(x->getChild());
+		}
+		if (x->getRight()/* && x->getRight()->getColor() == 'w'*/)
+		{
+			deleteSubtree(x->getRight());
+		}
+		if (x->getParent() != nullptr)
+		{
+			x->getParent()->unlinkChild(x);
+		}
+		delete x;
+		x = nullptr;
+	}
+	~FibonacciHeap()
+	{
+		T king_root_data = king_root->getData();
+		this->deleteSubtree(this->king_root);
+		this->king_root = new FibonacciHeapNode<T>(king_root->getData());
+		this->size_of_heap = 0;
+	}
 };
 
 #endif
