@@ -116,8 +116,15 @@ public:
 			}
 			else
 			{
-
+				x->getLeft()->setRight(x->getRight());
+				x->getRight()->setLeft(x->getLeft());
+				if (x == child)
+				{
+					this->child = this->child->getRight();
+				}
 			}
+			this->degree--;
+			//mark
 		}
 	}
 	

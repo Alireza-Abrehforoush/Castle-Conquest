@@ -24,17 +24,34 @@ private:
 		for (FibonacciHeapNode<T>* y = this->king_root->getChild(); ; )
 		{
 			next = y->getRight();
-			if (degrees_list[y->getDegree()] == nullptr)
+			while (true)
 			{
-				degrees_list[y->getDegree()] = y;
-			}
-			else
-			{
-				if (y->getData() > degrees_list[y->getDegree()]->getData())
+				if (degrees_list[y->getDegree()] == nullptr)
 				{
-
-					degrees_list[y->getDegree()]->setChild(y);
+					degrees_list[y->getDegree()] = y;
+					break;
 				}
+				else
+				{
+					if (y->getData() > degrees_list[y->getDegree()]->getData())
+					{
+						this->king_root->unlinkChild(y);
+						degrees_list[y->getDegree()]->setChild(y);
+						y = y->getParent();
+					}
+					else
+					{
+						int degree_of_y = y->getDegree();
+						this->king_root->unlinkChild(degrees_list[y->getDegree()]);
+						y->setChild(degrees_list[y->getDegree()]);
+						degrees_list[degree_of_y] = nullptr;
+					}
+				}
+			}
+			y = y->getRight();
+			if (y == this->king_root->getChild())
+			{
+				break;
 			}
 		}
 	}
@@ -58,6 +75,10 @@ public:
 			this->minimum_element = x;
 		}
 		this->size_of_heap++;
+	}
+	void extractMinimum()
+	{
+
 	}
 };
 
