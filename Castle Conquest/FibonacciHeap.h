@@ -120,6 +120,37 @@ public:
 		}
 		
 	}
+	void decreaseKey(FibonacciHeapNode<T>* x, const T& y)
+	{
+		x->setData(y);
+		if (x->getParent() == this->king_root)
+		{
+			if (x->getData() < this->minimum_element->getData())
+			{
+				this->king_root->getChild() = x;
+			}
+		}
+		if (x->getData() < x->getParent()->getData())
+		{
+			for (FibonacciHeapNode<T>* temp = x; temp->getParent() != this->king_root; )
+			{
+				FibonacciHeapNode<T>* kemp = temp->getParent();
+				bool mrk = kemp->isMarked();
+				kemp->unlinkChild(temp);
+				this->king_root->setChild(temp);
+				temp->setMarkStatus(false);
+				if (mrk == false)
+				{
+					break;
+				}
+				else
+				{
+					kemp->setMarkStatus(true);
+					temp = kemp;
+				}
+			}
+		}
+	}
 };
 
 #endif
