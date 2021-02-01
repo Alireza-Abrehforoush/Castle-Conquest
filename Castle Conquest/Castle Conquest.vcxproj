@@ -141,6 +141,7 @@
     <ClCompile Include="AVLTree.cpp" />
     <ClCompile Include="BST.cpp" />
     <ClCompile Include="BSTNode.cpp" />
+    <ClCompile Include="Castle.cpp" />
     <ClCompile Include="FibonacciHeap.cpp" />
     <ClCompile Include="FibonacciHeapNode.cpp" />
     <ClCompile Include="main.cpp" />
@@ -150,6 +151,7 @@
     <ClInclude Include="AVLTree.h" />
     <ClInclude Include="BST.h" />
     <ClInclude Include="BSTNode.h" />
+    <ClInclude Include="Castle.h" />
     <ClInclude Include="FibonacciHeap.h" />
     <ClInclude Include="FibonacciHeapNode.h" />
     <ClInclude Include="MyFuncs.h" />
