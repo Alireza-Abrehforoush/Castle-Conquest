@@ -37,10 +37,17 @@
       <Filter>Source Files</Filter>
     </ClCompile>
 <<<<<<< HEAD
+<<<<<<< HEAD
     <ClCompile Include="Castle.cpp">
 =======
     <ClCompile Include="Soldier.cpp">
 >>>>>>> soldier
+=======
+    <ClCompile Include="MyQueue.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="QueueNode.cpp">
+>>>>>>> queue
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -64,10 +71,26 @@
       <Filter>Header Files</Filter>
     </ClInclude>
 <<<<<<< HEAD
+<<<<<<< HEAD
     <ClInclude Include="Castle.h">
 =======
     <ClInclude Include="Soldier.h">
 >>>>>>> soldier
+=======
+    <ClInclude Include="MyQueue.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TLinkedList.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TNode.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TStack.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="QueueNode.h">
+>>>>>>> queue
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
