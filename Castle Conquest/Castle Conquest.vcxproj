@@ -146,6 +146,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MyFuncs.cpp" />
     <ClCompile Include="MyQueue.cpp" />
+    <ClCompile Include="QueueNode.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AVLTree.h" />
@@ -155,6 +156,10 @@
     <ClInclude Include="FibonacciHeapNode.h" />
     <ClInclude Include="MyFuncs.h" />
     <ClInclude Include="MyQueue.h" />
+    <ClInclude Include="QueueNode.h" />
+    <ClInclude Include="TLinkedList.h" />
+    <ClInclude Include="TNode.h" />
+    <ClInclude Include="TStack.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

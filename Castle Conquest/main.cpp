@@ -4,6 +4,7 @@ using namespace std;
 
 #include "BST.h"
 #include "AVLTree.h"
+#include "TLinkedList.h"
 
 int main()
 {
@@ -36,5 +37,6 @@ int main()
 		tr.insert(i%3);
 	}
 	tr.print();
+	TLinkedList<int> q;
 	return 0;
 }
