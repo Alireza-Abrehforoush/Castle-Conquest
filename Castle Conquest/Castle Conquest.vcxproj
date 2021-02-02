@@ -20,7 +20,7 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
-    <ProjectGuid>{F6A89EFD-C401-4B0E-ACA9-642778E6E819}</ProjectGuid>
+    <ProjectGuid>{1681EBF2-6203-4A07-9AE4-81E91D9B811C}</ProjectGuid>
     <RootNamespace>CastleConquest</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
@@ -146,6 +146,7 @@
     <ClInclude Include="FibonacciHeap.h" />
     <ClInclude Include="FibonacciHeapNode.h" />
     <ClInclude Include="Graph.h" />
+    <ClInclude Include="MyFuncs.h" />
     <ClInclude Include="MyQueue.h" />
     <ClInclude Include="MyStack.h" />
     <ClInclude Include="MyVector.h" />
@@ -161,7 +162,6 @@
     <ClCompile Include="AVLTree.cpp" />
     <ClCompile Include="BST.cpp" />
     <ClCompile Include="BSTNode.cpp" />
-<<<<<<< HEAD
     <ClCompile Include="Castle.cpp" />
     <ClCompile Include="Edge.cpp" />
     <ClCompile Include="FibonacciHeap.cpp" />
@@ -175,23 +175,6 @@
     <ClCompile Include="Soldier.cpp" />
     <ClCompile Include="StackNode.cpp" />
     <ClCompile Include="Vertex.cpp" />
-=======
-    <ClCompile Include="Edge.cpp" />
-    <ClCompile Include="Graph.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="MyFuncs.cpp" />
-    <ClCompile Include="Vertex.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="AVLTree.h" />
-    <ClInclude Include="BST.h" />
-    <ClInclude Include="BSTNode.h" />
-    <ClInclude Include="Edge.h" />
-    <ClInclude Include="Graph.h" />
-    <ClInclude Include="MyFuncs.h" />
-    <ClInclude Include="MyVector.h" />
-    <ClInclude Include="Vertex.h" />
->>>>>>> graph
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
