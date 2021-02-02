@@ -159,6 +159,7 @@
     <ClCompile Include="AVLTree.cpp" />
     <ClCompile Include="BST.cpp" />
     <ClCompile Include="BSTNode.cpp" />
+<<<<<<< HEAD
     <ClCompile Include="Castle.cpp" />
     <ClCompile Include="FibonacciHeap.cpp" />
     <ClCompile Include="FibonacciHeapNode.cpp" />
@@ -170,6 +171,23 @@
     <ClCompile Include="Soldier.cpp" />
     <ClCompile Include="StackNode.cpp" />
     <ClCompile Include="Vertex.cpp" />
+=======
+    <ClCompile Include="Edge.cpp" />
+    <ClCompile Include="Graph.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="MyFuncs.cpp" />
+    <ClCompile Include="Vertex.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="AVLTree.h" />
+    <ClInclude Include="BST.h" />
+    <ClInclude Include="BSTNode.h" />
+    <ClInclude Include="Edge.h" />
+    <ClInclude Include="Graph.h" />
+    <ClInclude Include="MyFuncs.h" />
+    <ClInclude Include="MyVector.h" />
+    <ClInclude Include="Vertex.h" />
+>>>>>>> graph
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
