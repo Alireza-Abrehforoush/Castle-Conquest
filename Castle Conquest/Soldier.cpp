@@ -94,7 +94,7 @@ bool Soldier::operator!=(const Soldier& x)
 	else return false;
 }
 
-Soldier* Soldier::findSoldierId(const string& id)
+Soldier* Soldier::findSoldierById(const string& id)
 {
 	return soldier_ids_map.find(id)->second;
 }

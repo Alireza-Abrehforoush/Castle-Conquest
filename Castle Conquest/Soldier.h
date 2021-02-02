@@ -30,7 +30,7 @@ public:
 	bool operator>=(const Soldier& x);
 	bool operator==(const Soldier& x);
 	bool operator!=(const Soldier& x);
-	static Soldier* findSoldierId(const string& id);
+	static Soldier* findSoldierById(const string& id);
 	~Soldier();
 };
 
