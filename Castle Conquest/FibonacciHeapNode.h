@@ -12,17 +12,27 @@ private:
 	FibonacciHeapNode<T>* right;
 	int degree;
 	bool marked;
-	
+	bool deleted;
 public:
 	FibonacciHeapNode()
-		:parent(nullptr)
+		: parent(nullptr)
+		, child(nullptr)
+		, left(nullptr)
+		, right(nullptr)
+		, degree(0)
 		, marked(false)
+		, deleted(false)
 	{
 	}
-	FibonacciHeapNode(const T& data, FibonacciHeapNode<T>* parent = nullptr, bool marked = false)
-		:data(data)
+	FibonacciHeapNode(const T& data, FibonacciHeapNode<T>* parent = nullptr, FibonacciHeapNode<T>* child = nullptr, FibonacciHeapNode<T>* left = nullptr, FibonacciHeapNode<T>* right = nullptr, int degree = 0, bool marked = false, bool deleted = false)
+		: data(data)
 		, parent(parent)
+		, child(child)
+		, left(left)
+		, right(right)
+		, degree(0)
 		, marked(marked)
+		, deleted(deleted)
 	{
 	}
 	T getData() const
@@ -53,6 +63,10 @@ public:
 	{
 		return this->degree;
 	}
+	char isDeleted() const
+	{
+		return this->deleted;
+	}
 
 	void setData(const T& data)
 	{
@@ -73,7 +87,7 @@ public:
 			child->setLeft(temp);
 			this->getChild()->setLeft(child);
 			child->setRight(this->getChild());
-			child->getParent(this);
+			child->setParent(this);
 		}
 		else
 		{
@@ -105,13 +119,18 @@ public:
 		this->marked = mark;
 		return;
 	}
+	void setDeleteStatus(bool deleted)
+	{
+		this->deleted = deleted;
+		return;
+	}
 	void unlinkChild(FibonacciHeapNode<T>* x)
 	{
 		if (x != nullptr)
 		{
 			if (x->getLeft() == x)
 			{
-				x->getParent(nullptr);
+				x->setParent(nullptr);
 				this->child = nullptr;
 			}
 			else

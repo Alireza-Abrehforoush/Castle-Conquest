@@ -5,6 +5,7 @@ using namespace std;
 #include "BST.h"
 #include "AVLTree.h"
 #include "TLinkedList.h"
+#include "FibonacciHeap.h"
 
 int main()
 {
@@ -24,19 +25,11 @@ int main()
 	{
 		tr.insert(i);
 	}
-	tr.print();
-	tr.remove(7);
-	tr.print();
-	tr.remove(3);
-	tr.print();
-	tr.remove(6);
-	tr.print();
-	tr.~AVLTree();
-	for (int i = 0; i < 10; i++)
-	{
-		tr.insert(i%3);
-	}
-	tr.print();
-	TLinkedList<int> q;
+	FibonacciHeap<int> kemp(20);
+	kemp.insert(10);
+	kemp.insert(30);
+	kemp.insert(238);
+	
+	kemp.~FibonacciHeap();
 	return 0;
 }

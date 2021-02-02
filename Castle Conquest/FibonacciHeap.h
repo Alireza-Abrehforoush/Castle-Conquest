@@ -13,49 +13,56 @@ private:
 
 	void consolidate()
 	{
-		FibonacciHeapNode<T>** degrees_list = new FibonacciHeapNode<T> * [ceil(log2(this->size_of_heap))];
-		FibonacciHeapNode<T>* next = this->king_root->getChild();
-		FibonacciHeapNode<T>* end = next->getLeft();
-
-		for (int i = 0; i < this->size_of_heap; i++)
+		if (!this->king_root->hasChild())
 		{
-			degrees_list[i] = nullptr;
+			return;
 		}
-		for (FibonacciHeapNode<T>* y = this->king_root->getChild(); ; )
+		else
 		{
-			next = y->getRight();
-			while (true)
+			FibonacciHeapNode<T>** degrees_list = new FibonacciHeapNode<T> * [ceil(log2(this->size_of_heap)) + 1];
+			FibonacciHeapNode<T>* next = this->king_root->getChild();
+			FibonacciHeapNode<T>* end = next->getLeft();
+
+			for (int i = 0; i < ceil(log2(this->size_of_heap)) + 1; i++)
 			{
-				if (degrees_list[y->getDegree()] == nullptr)
+				degrees_list[i] = nullptr;
+			}
+			for (FibonacciHeapNode<T>* y = this->king_root->getChild(); ; )
+			{
+				next = y->getRight();
+				while (true)
 				{
-					degrees_list[y->getDegree()] = y;
-					break;
-				}
-				else
-				{
-					if (y->getData() > degrees_list[y->getDegree()]->getData())
+					if (degrees_list[y->getDegree()] == nullptr)
 					{
-						this->king_root->unlinkChild(y);
-						degrees_list[y->getDegree()]->setChild(y);
-						y = y->getParent();
+						degrees_list[y->getDegree()] = y;
+						break;
 					}
 					else
 					{
-						int degree_of_y = y->getDegree();
-						this->king_root->unlinkChild(degrees_list[y->getDegree()]);
-						y->setChild(degrees_list[y->getDegree()]);
-						degrees_list[degree_of_y] = nullptr;
+						if (y->getData() > degrees_list[y->getDegree()]->getData())
+						{
+							this->king_root->unlinkChild(y);
+							degrees_list[y->getDegree()]->setChild(y);
+							y = y->getParent();
+						}
+						else
+						{
+							int degree_of_y = y->getDegree();
+							this->king_root->unlinkChild(degrees_list[y->getDegree()]);
+							y->setChild(degrees_list[y->getDegree()]);
+							degrees_list[degree_of_y] = nullptr;
+						}
 					}
 				}
+				y = y->getRight();
+				if (y == this->king_root->getChild())
+				{
+					break;
+				}
 			}
-			y = y->getRight();
-			if (y == this->king_root->getChild())
-			{
-				break;
-			}
+			delete[] degrees_list;
+			degrees_list = nullptr;
 		}
-		delete[] degrees_list;
-		degrees_list = nullptr;
 	}
 public:
 	FibonacciHeap()
@@ -64,13 +71,17 @@ public:
 	FibonacciHeap(const T& head)
 	{
 		this->king_root = new FibonacciHeapNode<T>(head);
-		this->minimum = new FibonacciHeapNode<T>(head);
+		this->minimum_element = new FibonacciHeapNode<T>(head);
 		this->king_root->setChild(this->minimum_element);
 		this->size_of_heap++;
 	}
 	void insert(const T& data)
 	{
 		FibonacciHeapNode<T>* x = new FibonacciHeapNode<T>(data);
+		if (this->king_root->getChild() == nullptr)
+		{
+			this->minimum_element = x;
+		}
 		this->king_root->setChild(x);
 		if (data < this->minimum_element->getData())
 		{
@@ -107,7 +118,7 @@ public:
 			T min = king_root->getChild()->getData();
 			for (FibonacciHeapNode<T>* it = king_root->getChild(); ; it = it->getRight())
 			{
-				if (min > it->getData())
+				if (min >= it->getData())
 				{
 					minimum_element = it;
 					min = it->getData();
@@ -153,12 +164,12 @@ public:
 	}
 	void deleteSubtree(FibonacciHeapNode<T>* x)
 	{
-		//x->setColor('b');
+		x->setDeleteStatus(true);
 		if (x->getChild() != nullptr)
 		{
 			deleteSubtree(x->getChild());
 		}
-		if (x->getRight()/* && x->getRight()->getColor() == 'w'*/)
+		if (x->getRight() && x->getRight()->isDeleted() == false)
 		{
 			deleteSubtree(x->getRight());
 		}
