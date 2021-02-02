@@ -145,9 +145,11 @@
     <ClInclude Include="FibonacciHeap.h" />
     <ClInclude Include="FibonacciHeapNode.h" />
     <ClInclude Include="MyQueue.h" />
+    <ClInclude Include="MyStack.h" />
     <ClInclude Include="MyVector.h" />
     <ClInclude Include="QueueNode.h" />
     <ClInclude Include="Soldier.h" />
+    <ClInclude Include="StackNode.h" />
     <ClInclude Include="TLinkedList.h" />
     <ClInclude Include="TNode.h" />
     <ClInclude Include="TStack.h" />
@@ -163,8 +165,10 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MyFuncs.cpp" />
     <ClCompile Include="MyQueue.cpp" />
+    <ClCompile Include="MyStack.cpp" />
     <ClCompile Include="QueueNode.cpp" />
     <ClCompile Include="Soldier.cpp" />
+    <ClCompile Include="StackNode.cpp" />
     <ClCompile Include="Vertex.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
