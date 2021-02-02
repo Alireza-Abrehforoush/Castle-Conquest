@@ -13,5 +13,6 @@ int main()
 {
 	Castle home;
 	Soldier s1;
+	FibonacciHeap<int> heap(12);
 	return 0;
 }

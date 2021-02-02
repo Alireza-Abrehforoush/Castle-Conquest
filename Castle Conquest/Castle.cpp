@@ -57,6 +57,37 @@ Soldier* Castle::findVanguardFor(const Soldier& opponent)
 	return vanguard;
 }
 
+void Castle::fillFibonacciHeap(FibonacciHeap<pair<double, string>>* winner_finder_fibonacci_heap, BSTNode<pair<double, string>>* x)
+{
+	if (x != nullptr)
+	{
+		if (x->getLeft() == nullptr && x->getRight() == nullptr)
+		{
+			winner_finder_fibonacci_heap->insert(pair<double, string>(x->getData().first, x->getData().second));
+		}
+		else if (x->getLeft() == nullptr)
+		{
+			fillFibonacciHeap(winner_finder_fibonacci_heap, x->getRight());
+			winner_finder_fibonacci_heap->insert(pair<double, string>(x->getData().first, x->getData().second));
+		}
+		else if (x->getRight() == nullptr)
+		{
+			fillFibonacciHeap(winner_finder_fibonacci_heap, x->getLeft());
+			winner_finder_fibonacci_heap->insert(pair<double, string>(x->getData().first, x->getData().second));
+		}
+		else
+		{
+			fillFibonacciHeap(winner_finder_fibonacci_heap, x->getRight());
+			fillFibonacciHeap(winner_finder_fibonacci_heap, x->getLeft());
+			winner_finder_fibonacci_heap->insert(pair<double, string>(x->getData().first, x->getData().second));
+		}
+	}
+	else
+	{
+		return;
+	}
+}
+
 Castle::~Castle()
 {
 	castle_ids_map.erase(this->getId());

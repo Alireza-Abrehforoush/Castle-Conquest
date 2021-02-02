@@ -4,6 +4,7 @@
 using namespace std;
 #include <cmath>
 #include "FibonacciHeapNode.h"
+#include "MyVector.h"
 template <class T>
 class FibonacciHeap
 {
@@ -138,12 +139,12 @@ public:
 		x->setData(y);
 		if (x->getParent() == this->king_root)
 		{
-			if (x->getData() < this->minimum_element->getData())
+			if (x->getData() <= this->minimum_element->getData())
 			{
 				this->king_root->getChild() = x;
 			}
 		}
-		if (x->getData() < x->getParent()->getData())
+		if (x->getData() <= x->getParent()->getData())
 		{
 			for (FibonacciHeapNode<T>* temp = x; temp->getParent() != this->king_root; )
 			{
@@ -163,6 +164,72 @@ public:
 				}
 			}
 		}
+	}
+	FibonacciHeapNode<T>* searchNode(const T& data, FibonacciHeapNode<T>* x)
+	{
+		if (x == nullptr)
+		{
+			return nullptr;
+		}
+		if (x->getData() == data)
+		{
+			return x;
+		}
+		MyVector<FibonacciHeapNode<T>*>temp;
+		if (x->getChild() != nullptr)
+		{
+			for (FibonacciHeapNode<T>* kemp = x->getChild(); ; )
+			{
+				temp.push(kemp);
+				kemp = kemp->getRight();
+				if (kemp = x->getChild())
+				{
+					break;
+				}
+			}
+		}
+		for (int i = 0; i < temp.getSize(); i++)
+		{
+			if (searchNode(data, temp[i]) != nullptr)
+			{
+				return temp[i];
+			}
+		}
+		return nullptr;
+	}
+	FibonacciHeapNode<T>* searchNode(const T& data)
+	{
+		MyVector<FibonacciHeapNode<T>*>temp;
+		for (FibonacciHeapNode<T>* kemp = this->king_root->getChild(); ; )
+		{
+			temp.push(kemp);
+			kemp = kemp->getRight();
+			if (kemp = king_root->getChild())
+			{
+				break;
+			}
+		}
+		for (int i = 0; i < temp.size(); i++)
+		{
+			if (searchNode(data, temp[i]) != nullptr)
+			{
+				return temp[i];
+			}
+		}
+		return nullptr;
+	}
+	int getDepthOfNode(FibonacciHeapNode<T>* x)
+	{
+		FibonacciHeapNode<T>* kemp = x;
+		int i = 0;
+		for (; kemp != nullptr; kemp = kemp->getParent(), i++);
+		return i - 1;
+	}
+	void deleteNode(FibonacciHeapNode<T>* x)
+	{
+		this->decreaseKey(x, this->minimum_element->getData());
+		this->extractMinimum();
+		return;
 	}
 	void deleteSubtree(FibonacciHeapNode<T>* x)
 	{
