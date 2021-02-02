@@ -29,7 +29,8 @@ int main()
 	kemp.insert(10);
 	kemp.insert(30);
 	kemp.insert(238);
-	
+	kemp.extractMinimum();
+	kemp.print();
 	kemp.~FibonacciHeap();
 	return 0;
 }
