@@ -20,7 +20,7 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
-    <ProjectGuid>{5B474E55-77F4-4A0F-BB07-4E37D633021D}</ProjectGuid>
+    <ProjectGuid>{F6A89EFD-C401-4B0E-ACA9-642778E6E819}</ProjectGuid>
     <RootNamespace>CastleConquest</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
@@ -138,6 +138,22 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="AVLTree.h" />
+    <ClInclude Include="BST.h" />
+    <ClInclude Include="BSTNode.h" />
+    <ClInclude Include="Castle.h" />
+    <ClInclude Include="FibonacciHeap.h" />
+    <ClInclude Include="FibonacciHeapNode.h" />
+    <ClInclude Include="MyQueue.h" />
+    <ClInclude Include="MyVector.h" />
+    <ClInclude Include="QueueNode.h" />
+    <ClInclude Include="Soldier.h" />
+    <ClInclude Include="TLinkedList.h" />
+    <ClInclude Include="TNode.h" />
+    <ClInclude Include="TStack.h" />
+    <ClInclude Include="Vertex.h" />
+  </ItemGroup>
+  <ItemGroup>
     <ClCompile Include="AVLTree.cpp" />
     <ClCompile Include="BST.cpp" />
     <ClCompile Include="BSTNode.cpp" />
@@ -146,30 +162,10 @@
     <ClCompile Include="FibonacciHeapNode.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MyFuncs.cpp" />
-<<<<<<< HEAD
-    <ClCompile Include="Soldier.cpp" />
-=======
     <ClCompile Include="MyQueue.cpp" />
     <ClCompile Include="QueueNode.cpp" />
->>>>>>> queue
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="AVLTree.h" />
-    <ClInclude Include="BST.h" />
-    <ClInclude Include="BSTNode.h" />
-    <ClInclude Include="Castle.h" />
-    <ClInclude Include="FibonacciHeap.h" />
-    <ClInclude Include="FibonacciHeapNode.h" />
-    <ClInclude Include="MyFuncs.h" />
-<<<<<<< HEAD
-    <ClInclude Include="Soldier.h" />
-=======
-    <ClInclude Include="MyQueue.h" />
-    <ClInclude Include="QueueNode.h" />
-    <ClInclude Include="TLinkedList.h" />
-    <ClInclude Include="TNode.h" />
-    <ClInclude Include="TStack.h" />
->>>>>>> queue
+    <ClCompile Include="Soldier.cpp" />
+    <ClCompile Include="Vertex.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
