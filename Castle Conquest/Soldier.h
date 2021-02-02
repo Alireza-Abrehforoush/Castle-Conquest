@@ -1,6 +1,7 @@
 #ifndef SOLDIER_PEOEUEYGHFEBNCEIG
 #define SOLDIER_PEOEUEYGHFEBNCEIG
 #include <string>
+#include <map>
 using namespace std;
 class Soldier
 {
@@ -9,52 +10,28 @@ private:
 	string id;
 	double power;
 	double velocity;
-	bool isAlive;
+	bool is_alive;
+	static map<string, Soldier*> soldier_ids_map;
+	static int soldier_generated_id;
 public:
-	Soldier(string id = "", double power = 0, double velocity = 0, bool isAlive = true)
-		: id(id)
-		, power(power)
-		, velocity(velocity)
-		, isAlive(isAlive)
-	{
-	}
+	Soldier(double power = 0, double velocity = 0, bool is_alive = true);
 
-	string getId() const
-	{
-		return this->id;
-	}
-	double getPower() const
-	{
-		return this->power;
-	}
-	double getVelcity() const
-	{
-		return this->velocity;
-	}
-
-	void setId(string id)
-	{
-		this->id = id;
-		return;
-	}
-	void setPower(double power)
-	{
-		this->power = power;
-		return;
-	}
-	void setVelocity(double velocity)
-	{
-		this->velocity = velocity;
-		return;
-	}
-
-	~Soldier()
-	{
-		this->setId("");
-		this->setPower(0);
-		this->setVelocity(0);
-		//this->setLifeStatus(false);
-	}
+	string getId() const;
+	double getPower() const;
+	double getVelcity() const;
+	bool isAlive() const;
+	void setId(string id);
+	void setPower(double power);
+	void setVelocity(double velocity);
+	void setLifeStatus(bool is_alive);
+	bool operator< (const Soldier& x);
+	bool operator> (const Soldier& x);
+	bool operator<=(const Soldier& x);
+	bool operator>=(const Soldier& x);
+	bool operator==(const Soldier& x);
+	bool operator!=(const Soldier& x);
+	static Soldier* findSoldierId(const string& id);
+	~Soldier();
 };
 
 #endif

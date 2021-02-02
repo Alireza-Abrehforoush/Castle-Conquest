@@ -233,6 +233,7 @@ protected:
 			}
 		}
 	}
+	
 
 private:
 	void display(const string& b_part, const BSTNode<T>* x, bool l)
@@ -290,6 +291,11 @@ public:
 		this->BST<T>::deleteNode(temp);
 		return;
 	}
+	BSTNode<T>* search(const T& x)
+	{
+		return BST<T>::iterativeSearch(x);
+	}
+
 	~AVLTree()
 	{
 		BST<T>::~BST();

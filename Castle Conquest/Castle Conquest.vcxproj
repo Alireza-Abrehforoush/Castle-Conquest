@@ -142,8 +142,10 @@
     <ClInclude Include="BST.h" />
     <ClInclude Include="BSTNode.h" />
     <ClInclude Include="Castle.h" />
+    <ClInclude Include="Edge.h" />
     <ClInclude Include="FibonacciHeap.h" />
     <ClInclude Include="FibonacciHeapNode.h" />
+    <ClInclude Include="Graph.h" />
     <ClInclude Include="MyQueue.h" />
     <ClInclude Include="MyStack.h" />
     <ClInclude Include="MyVector.h" />
@@ -160,8 +162,10 @@
     <ClCompile Include="BST.cpp" />
     <ClCompile Include="BSTNode.cpp" />
     <ClCompile Include="Castle.cpp" />
+    <ClCompile Include="Edge.cpp" />
     <ClCompile Include="FibonacciHeap.cpp" />
     <ClCompile Include="FibonacciHeapNode.cpp" />
+    <ClCompile Include="Graph.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MyFuncs.cpp" />
     <ClCompile Include="MyQueue.cpp" />

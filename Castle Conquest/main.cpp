@@ -12,5 +12,6 @@ using namespace std;
 int main()
 {
 	Castle home;
+	Soldier s1;
 	return 0;
 }
