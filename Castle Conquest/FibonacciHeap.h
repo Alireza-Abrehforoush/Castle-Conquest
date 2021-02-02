@@ -182,29 +182,6 @@ public:
 		delete x;
 		x = nullptr;
 	}
-	int display(FibonacciHeapNode<T>* H)
-	{
-		FibonacciHeapNode<T>* p = H;
-		if (p == nullptr)
-		{
-			cout << "Empty Heap" << endl;
-			return 0;
-		}
-		cout << "Root Nodes: " << endl;
-
-		do {
-			cout << p->getData();
-			p = p->getRight();
-			if (p != H) {
-				cout << "-->";
-			}
-		} while (p != H && p->getRight() != nullptr);
-		cout << endl;
-	}
-	void print()
-	{
-		display(this->king_root->getChild()->getChild());
-	}
 	~FibonacciHeap()
 	{
 		T king_root_data = king_root->getData();

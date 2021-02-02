@@ -235,31 +235,36 @@ protected:
 	}
 
 private:
-	void printBT(const string& prefix, const BSTNode<T>* n, bool isLeft)
+	void display(const string& b_part, const BSTNode<T>* x, bool l)
 	{
-		if (n != nullptr)
+		if (x != nullptr)
 		{
-			std::cout << prefix;
-
-			char h = (char)-60;
-			char r = (char)-61;
-			char l = (char)-64;
-			char u = (char)-77;
-			if (isLeft)
-				cout << r << h << h;
-			else
-				cout << l << h << h;
-			std::cout << n->getData() << std::endl;
-			string temp;
-			if (isLeft)
+			std::cout << b_part;
+			char ch = (char)-60;
+			char cr = (char)-61;
+			char cl = (char)-64;
+			char cu = (char)-77;
+			if (l)
 			{
-				temp = u;
+				cout << cr << ch << ch;
+			}
+			else
+			{
+				cout << cl << ch << ch;
+			}
+			std::cout << x->getData() << std::endl;
+			string temp;
+			if (l)
+			{
+				temp = cu;
 				temp.append("   ");
 			}
 			else
+			{
 				temp = "    ";
-			printBT(prefix + temp, n->getLeft(), true);
-			printBT(prefix + temp, n->getRight(), false);
+			}
+			display(b_part + temp, x->getLeft(), true);
+			display(b_part + temp, x->getRight(), false);
 		}
 	}
 public:
@@ -267,7 +272,7 @@ public:
 	void print()
 	{
 		cout << endl;
-		printBT("", this->root, false);
+		display("", this->root, false);
 		cout << endl;
 	}
 	void insert(const T& x)
@@ -281,8 +286,8 @@ public:
 	}
 	void remove(const T& x)
 	{
-		BSTNode<T>* temp = this->iterativeSearch(x);
-		this->deleteNode(temp);
+		BSTNode<T>* temp = this->BST<T>::iterativeSearch(x);
+		this->BST<T>::deleteNode(temp);
 		return;
 	}
 	~AVLTree()

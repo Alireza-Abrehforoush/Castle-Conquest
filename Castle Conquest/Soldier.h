@@ -9,11 +9,13 @@ private:
 	string id;
 	double power;
 	double velocity;
+	bool isAlive;
 public:
-	Soldier(string id = "", double power = 0, double velocity = 0)
-		:id(id)
-		,power(power)
-		,velocity(velocity)
+	Soldier(string id = "", double power = 0, double velocity = 0, bool isAlive = true)
+		: id(id)
+		, power(power)
+		, velocity(velocity)
+		, isAlive(isAlive)
 	{
 	}
 
@@ -44,6 +46,14 @@ public:
 	{
 		this->velocity = velocity;
 		return;
+	}
+
+	~Soldier()
+	{
+		this->setId("");
+		this->setPower(0);
+		this->setVelocity(0);
+		//this->setLifeStatus(false);
 	}
 };
 

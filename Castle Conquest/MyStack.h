@@ -9,6 +9,9 @@ protected:
 private:
 	StackNode<T>* top;
 public:
+	MyStack()
+	{
+	}
 	void push(const T& data)
 	{
 		StackNode<T>* temp;
@@ -74,9 +77,9 @@ public:
 	}
 	~MyStack()
 	{
-		while (this->isEmpty() != nullptr)
+		while (this->isEmpty() == false)
 		{
-			this->pop;
+			this->pop();
 		}
 	}
 };
