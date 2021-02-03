@@ -23,6 +23,15 @@ void Castle::setId(const string& id)
 	return;
 }
 
+void Castle::insertSoldier(Soldier* x)
+{
+	if (x != nullptr)
+	{
+		this->cstl_sldrs.insert(pair<double, string>(x->getPower(), x->getId()));
+	}
+	return;
+}
+
 Castle* Castle::findCastleById(const string& id)
 {
 	return castle_ids_map.find(id)->second;
@@ -86,6 +95,14 @@ void Castle::fillFibonacciHeap(FibonacciHeap<pair<double, string>>* winner_finde
 	{
 		return;
 	}
+}
+
+void Castle::twoByTwoFight(Soldier* home, Soldier* opponent)
+{
+	FibonacciHeap<pair<double, string>> wffh;
+	fillFibonacciHeap(&wffh, cstl_sldrs.getRoot());
+	wffh.insert(pair<double, string>(opponent->getPower(), opponent->getId()));
+	//delete all nodes except fighters
 }
 
 Castle::~Castle()

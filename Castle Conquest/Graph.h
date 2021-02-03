@@ -3,12 +3,12 @@
 #include <map>
 #include "MyVector.h"
 #include "Edge.h"
-template <class T>
+template <class T, class U>
 class Graph
 {
 protected:
 private:
-	MyVector<MyVector<Edge<T>*>> adjacency_matrix;
+	MyVector<MyVector<Edge<T, U>*>> adjacency_matrix;
 	map<Vertex<T>*, int> indices_map;
 public:
 	Graph()
@@ -18,10 +18,10 @@ public:
 	{
 		for (int i = 0; i < vertices.getSize(); i++)
 		{
-			Vertex<T>* t = new Vertex<T>(vertices[i].getData());//memory leak possible
+			Vertex<T>* t = new Vertex<T>(vertices[i].getData());
 			this->indices_map.insert(pair<Vertex<T>*, int>(t, i));
 		}
-		MyVector<Edge<T>*> k;
+		MyVector<Edge<U>*> k;
 		for (int i = 0; i < vertices.getSize(); i++)
 		{
 			k.push(nullptr);
@@ -31,18 +31,19 @@ public:
 			this->adjacency_matrix.push(k);
 		}
 	}
-	void addEdge(const Edge<T>& x)
+	void addEdge(const Edge<T, U>& x)
 	{
 		Vertex<T>* h = x.getHead();
 		Vertex<T>* t = x.getTail();
 		int ih = indices_map[h];
 		int it = indices_map[t];
-		this->adjacency_matrix[ih][it] = new Edge<T>(x);
+		this->adjacency_matrix[ih][it] = new Edge<T, U>(x);
 		return;
 	}
-	void addVertex(const Vertex<T>& x)
+	void addVertex(const T& x)
 	{
-		indices_map.insert(pair<Vertex<T>*, int>(&x, indices_map.size()));
+		Vertex<T>* kemp = new Vertex<T>(x);
+		indices_map.insert(pair<Vertex<T>*, int>(kemp, indices_map.size()));
 	}
 	int getNumberOfVertices() const
 	{

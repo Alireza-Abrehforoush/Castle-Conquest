@@ -8,11 +8,14 @@ using namespace std;
 #include "FibonacciHeap.h"
 #include "Soldier.h"
 #include "Castle.h"
+#include "Land.h"
 
 int main()
 {
 	Castle home;
 	Soldier s1;
 	FibonacciHeap<int> heap(12);
+	Land world;
+	world.buildLand();
 	return 0;
 }

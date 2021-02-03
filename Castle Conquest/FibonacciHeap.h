@@ -225,6 +225,7 @@ public:
 		for (; kemp != nullptr; kemp = kemp->getParent(), i++);
 		return i - 1;
 	}
+
 	void deleteNode(FibonacciHeapNode<T>* x)
 	{
 		this->decreaseKey(x, this->minimum_element->getData());

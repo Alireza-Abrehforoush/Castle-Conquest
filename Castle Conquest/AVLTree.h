@@ -5,6 +5,7 @@
 using namespace std;
 #include "BST.h"
 #include "MyFuncs.h"
+#include "MyQueue.h"
 template <class T>
 class AVLTree :
 	public BST<T>
@@ -234,7 +235,6 @@ protected:
 		}
 	}
 	
-
 private:
 	void display(const string& b_part, const BSTNode<T>* x, bool l)
 	{

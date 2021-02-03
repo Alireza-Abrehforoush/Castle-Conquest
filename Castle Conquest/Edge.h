@@ -1,11 +1,11 @@
 #pragma once
 #include "Vertex.h"
-template <class T>
+template <class T, class U>
 class Edge
 {
 protected:
 private:
-	T data;
+	U data;
 	double weight;
 	Vertex<T>* head;
 	Vertex<T>* tail;
@@ -16,7 +16,7 @@ public:
 		,tail(nullptr)
 	{
 	}
-	Edge(const Edge<T>& obj)
+	Edge(const Edge<T, U>& obj)
 	{
 		this->data = obj.data;
 		this->weight = obj.weight;
@@ -30,7 +30,7 @@ public:
 		,weight(weight)
 	{
 	}
-	void setData(const T& data)
+	void setData(const U& data)
 	{
 		this->data = data;
 		return;
@@ -50,7 +50,7 @@ public:
 		this->tail = tail;
 		return;
 	}
-	T& getData() const
+	U& getData() const
 	{
 		return this->data;
 	}
